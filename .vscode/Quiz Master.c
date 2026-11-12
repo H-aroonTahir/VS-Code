@@ -13,6 +13,10 @@ int main()
 	{1,2,3,4,5,6,7,8,9,10},
 	{0,0,0,0,0,0,0,0,0,0}
 	};
+	int totals;
+	float percentage;
+
+	
 	printf("      ====================="bold "Welcome to Quiz Master" reset"===========================\n");
 	printf("\nHere are 5 sections English, Mathematics, IQ, General Knowledge and Computer.\n");
 	printf("\nAlso, it has 3 Difficulty Levels \"Easy\", \"Medium\", \"Hard\"\n");
@@ -29,15 +33,19 @@ int main()
 	"Computer"
 	};
 	    
-	int total  =  sizeof(subjects)/ sizeof(subjects[0]);
+	int subject_count = sizeof(subjects) / sizeof(subjects[0]);
 	char ans;
 	do
 	{
-	for(int i = 0; i<total; i++)
+	for(int i = 0; i<subject_count; i++)
 	   {
 	   	printf("%d. %s: \n", i+1, subjects[i]);
 	} 
-		
+	totals = 0;
+	for(int i = 0; i < 10; i++)
+	{
+	    score[1][i] = 0;
+	}
 		
     printf("\nEnter your choice: "); 
     scanf("%d", &a);
@@ -1315,7 +1323,7 @@ int main()
 				printf("\nIncorrect!\n");
 			}
 		}
-		if(b == 2)
+		else if(b == 2)
 		{
 			printf("\nQ1. What is the purpose of a compiler?\n1. To browse websites\n2. To translate source code into machine code or another target form\n3. To store files\n4. To manage computer hardware\n");
 			scanf("%d", &e);
@@ -1421,7 +1429,7 @@ int main()
 				printf("\nIncorrect!\n");
 			}
 		}
-		if(b == 3)
+else if(b == 3)
 		{
 			printf("\nQ1. What is the time complexity of binary search in a sorted array?\n1. O(n)\n2. O(log n)\n3. O(n2)\n4. O(1)\n");
 			scanf("%d", &e);
@@ -1535,14 +1543,55 @@ int main()
 				printf("\nIncorrect!\n");
 			}
 		}
+		else
+		{
+			printf("\nInvalid difficulty choice!\n");
+		}
+	}
 	else
 	{
 		printf("\nInvalid subject choice!\n");
 	}
-	printf("\nDo you want to continue? (Y/N)\n");
-	scanf(" %c", &ans);
+	
+	//Result Calculation
+	for(int i = 0; i < 10; i++)
+	{
+    	totals = totals + score[1][i];
 	}
-	while(ans == 'Y');
+
+	percentage = (totals / 10.0) * 100;
+
+	printf("\n\n========== QUIZ RESULT ==========\n");
+	printf("Total Questions: 10\n");
+	printf("Correct Answers: %d\n", totals);
+	printf("Wrong Answers: %d\n", 10 - totals);
+	printf("Your Score: %d/10\n", totals);
+	printf("Percentage: %.2f%%\n", percentage);
+
+	if(percentage >= 80)
+	{
+	    printf("Performance: Excellent!\n");
+	}
+	else if(percentage >= 60)
+	{
+	    printf("Performance: Good!\n");
+	}
+	else if(percentage >= 40)
+	{
+    	printf("Performance: Average!\n");
+	}
+	else
+	{
+	    printf("Performance: Needs Improvement!\n");
+	}
+
+	printf("=================================\n");
+
+	printf("\nDo you want to retry? (Y/N)\n");
+	scanf(" %c", &ans);
+	} while(ans == 'Y' || ans == 'y');
+	
+	printf("\nThank you for participating in the quiz!\n");
+	printf("Goodbye!   \n...\n...\n .. *whispers (for now)\n");
 	return 0;
-	  
 }
